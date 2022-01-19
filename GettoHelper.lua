@@ -1,5 +1,5 @@
 --кто откроет код тот педик
-
+script_version('2')
 require 'lib.moonloader'
 local imgui = require('imgui')
 local encoding = require 'encoding'
@@ -13,15 +13,40 @@ local event = require 'lib.samp.events'
 local mem = require 'memory'
 local fa = require 'fAwesome5' -- ICONS LIST: https://fontawesome.com/v5.15/icons?d=gallery&s=solid&m=free
 
+function update()
+    local raw = 'https://raw.githubusercontent.com/DeDsEk0/settings_gh/main/update.json'
+    local dlstatus = require('moonloader').download_status
+    local requests = require('requests')
+    local f = {}
+    function f:getLastVersion()
+        local response = requests.get(raw)
+        if response.status_code == 200 then
+            return decodeJson(response.text)['last']
+        else
+            return 'UNKNOWN'
+        end
+    end
+    function f:download()
+        local response = requests.get(raw)
+        if response.status_code == 200 then
+            downloadUrlToFile(decodeJson(response.text)['url'], thisScript().path, function (id, status, p1, p2)
+                print('Скачиваю '..decodeJson(response.text)['url']..' в '..thisScript().path)
+                if status == dlstatus.STATUSEX_ENDDOWNLOAD then
+                    sampAddChatMessage('Скрипт обновлен, перезагрузка...', -1)
+                    thisScript():reload()
+                end
+            end)
+        else
+            sampAddChatMessage('Ошибка, невозможно установить обновление, код: '..response.status_code, -1)
+        end
+    end
+    return f
+end
 
 local script_vers = 1
-local script_vers_text = "1.1"
 local mx, my = getScreenResolution()
 local delay = 500
-local hp_state = false
-local raw = 'https://raw.githubusercontent.com/DeDsEk0/settings_gh/main/update.json'
-local dlstatus = require('moonloader').download_status
-
+local hp_state = falsea
 function apply_custom_style()
     imgui.SwitchContext()
     local style = imgui.GetStyle()
@@ -29,6 +54,7 @@ function apply_custom_style()
     local clr = imgui.Col
     local ImVec4 = imgui.ImVec4
     local ImVec2 = imgui.ImVec2
+
     style.WindowPadding = ImVec2(15, 15)
     style.WindowRounding = 15.0
     style.FramePadding = ImVec2(5, 5)
@@ -41,11 +67,9 @@ function apply_custom_style()
     style.GrabRounding = 7.0
     style.ChildWindowRounding = 8.0
     style.FrameRounding = 6.0
-   
- 
     colors[clr.Text] = ImVec4(0.95, 0.96, 0.98, 1.00)
     colors[clr.TextDisabled] = ImVec4(0.36, 0.42, 0.47, 1.00)
-    colors[clr.WindowBg] = ImVec4(0.00, 0.00, 0.00, 1.00)
+    colors[clr.WindowBg] = ImVec4(0.11, 0.15, 0.17, 1.00)
     colors[clr.ChildWindowBg] = ImVec4(0.15, 0.18, 0.22, 1.00)
     colors[clr.PopupBg] = ImVec4(0.08, 0.08, 0.08, 0.94)
     colors[clr.Border] = ImVec4(0.43, 0.43, 0.50, 0.50)
@@ -84,6 +108,7 @@ function apply_custom_style()
     colors[clr.TextSelectedBg] = ImVec4(0.25, 1.00, 0.00, 0.43)
     colors[clr.ModalWindowDarkening] = ImVec4(1.00, 0.98, 0.95, 0.73)
 end
+apply_custom_style()
 --�����
 bike = {[481] = true, [509] = true, [510] = true}
 moto = {[448] = true, [461] = true, [462] = true, [463] = true, [468] = true, [471] = true, [521] = true, [522] = true, [523] = true, [581] = true, [586] = true}
@@ -132,6 +157,7 @@ local mainIni = inicfg.load({
         gm_car = true,
         nobike = true,
         extra_ws = true,
+        fixalt = true,
     },
 }, directIni)
 
@@ -179,9 +205,13 @@ local password = imgui.ImBuffer(''..mainIni.settings.password, 100)
 local gm_car = imgui.ImBool(mainIni.settings.gm_car)
 local nobike = imgui.ImBool(mainIni.settings.nobike)
 local extra_ws = imgui.ImBool(mainIni.settings.extra_ws)
+local fixalt = imgui.ImBool(mainIni.settings.fixalt)
 
 function main()
     while not isSampAvailable() do wait(200) end
+    local lastver = update():getLastVersion()
+    notf.addNotification('GettoHelper Loaded!  Author:Lill_Chich.     Porno Version: '..lastver, 5)
+    
     menu = 4
     sampRegisterChatCommand('usedrugs',use_drug)
     image = imgui.CreateTextureFromFile("moonloader/config/gh.png")
@@ -189,7 +219,6 @@ function main()
     window.v = false
     onewindow.v = false
     sound = loadAudioStream('moonloader//resource//bruh.mp3')
-
     while true do
         wait(0)
         health = getCharHealth(PLAYER_PED)
@@ -362,6 +391,7 @@ function main()
         mainIni.settings.gm_car = gm_car.v
         mainIni.settings.nobike = nobike.v
         mainIni.settings.extra_ws = extra_ws.v
+        mainIni.settings.fixalt = fixalt.v
         inicfg.save(mainIni, directIni)
     end
 end
@@ -393,7 +423,6 @@ function imgui.Ques(text)
 end
 
 function imgui.OnDrawFrame()
-    apply_custom_style()
     if window.v then
         imgui.SetNextWindowPos(imgui.ImVec2(mx/2, my/2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(920, 620), imgui.Cond.FirstUseEver)
@@ -591,6 +620,13 @@ function imgui.OnDrawFrame()
                     imgui.Text('NoRadio')
                     imgui.SameLine()
                     imgui.ToggleButton('##12', noradio)
+                    imgui.Text(' ')
+                    imgui.SameLine()
+                    imgui.Ques('Игра не будет сворачиваться при нажатие ALT + ENTER')
+                    imgui.SameLine()
+                    imgui.Text('FixAlt+Enter')
+                    imgui.SameLine()
+                    imgui.ToggleButton('##22', fixalt)
                 end
                 if menu == 2 then
                     imgui.Text(' ')
@@ -690,9 +726,6 @@ function imgui.OnDrawFrame()
                         imgui.PushItemWidth(200)
                         imgui.InputText('Password', password)
                     end
-                    imgui.TextColoredRGB(u8'{808080}Связаться {808080}со {808080}мною')
-                    imgui.TextColoredRGB(u8'{00008B}ВК: ')
-                    imgui.SameLine()
                 end
                 if menu == 4 then
                     imgui.Text('      ')
@@ -740,6 +773,10 @@ function imgui.OnDrawFrame()
             imgui.CenterText(u8'Вы хотите обновить скрипт?')
             if imgui.Button(u8'Да', imgui.ImVec2(150,50)) then
                 sampAddChatMessage('Обнавление началось',-1)
+                update():download()
+                twowindow.v = false
+                window.v = false
+                imgui.Process = false
             end
             imgui.SameLine()
             if imgui.Button(u8'Нет', imgui.ImVec2(150,50)) then
@@ -827,11 +864,11 @@ end
 
 function event.onSendCommand(command)
     if command == mainIni.settings.command then
-        window.v = not window.v
-        imgui.Process = window.v
         if thisScript().version ~= lastver then
             twowindow.v = true
         end
+        window.v = not window.v
+        imgui.Process = window.v
         return false
     end
 end
@@ -839,56 +876,4 @@ end
 function imgui.CenterText(text)
     imgui.SetCursorPosX(imgui.GetWindowSize().x / 2 - imgui.CalcTextSize(text).x / 2)
     imgui.Text(text)
-end
-
-function imgui.TextColoredRGB(text)
-    local style = imgui.GetStyle()
-    local colors = style.Colors
-    local ImVec4 = imgui.ImVec4
-
-    local explode_argb = function(argb)
-        local a = bit.band(bit.rshift(argb, 24), 0xFF)
-        local r = bit.band(bit.rshift(argb, 16), 0xFF)
-        local g = bit.band(bit.rshift(argb, 8), 0xFF)
-        local b = bit.band(argb, 0xFF)
-        return a, r, g, b
-    end
-
-    local getcolor = function(color)
-        if color:sub(1, 6):upper() == 'SSSSSS' then
-            local r, g, b = colors[1].x, colors[1].y, colors[1].z
-            local a = tonumber(color:sub(7, 8), 16) or colors[1].w * 255
-            return ImVec4(r, g, b, a / 255)
-        end
-        local color = type(color) == 'string' and tonumber(color, 16) or color
-        if type(color) ~= 'number' then return end
-        local r, g, b, a = explode_argb(color)
-        return imgui.ImColor(r, g, b, a):GetVec4()
-    end
-
-    local render_text = function(text_)
-        for w in text_:gmatch('[^\r\n]+') do
-            local text, colors_, m = {}, {}, 1
-            w = w:gsub('{(......)}', '{%1FF}')
-            while w:find('{........}') do
-                local n, k = w:find('{........}')
-                local color = getcolor(w:sub(n + 1, k - 1))
-                if color then
-                    text[#text], text[#text + 1] = w:sub(m, n - 1), w:sub(k + 1, #w)
-                    colors_[#colors_ + 1] = color
-                    m = n
-                end
-                w = w:sub(1, n - 1) .. w:sub(k + 1, #w)
-            end
-            if text[0] then
-                for i = 0, #text do
-                    imgui.TextColored(colors_[i] or colors[1], u8(text[i]))
-                    imgui.SameLine(nil, 0)
-                end
-                imgui.NewLine()
-            else imgui.Text(u8(w)) end
-        end
-    end
-
-    render_text(text)
 end
