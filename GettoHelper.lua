@@ -1,5 +1,5 @@
---кто откроет код тот педик
-script_version('2')
+--ГЄГІГ® Г®ГІГЄГ°Г®ГҐГІ ГЄГ®Г¤ ГІГ®ГІ ГЇГҐГ¤ГЁГЄ
+script_version('3')
 require 'lib.moonloader'
 local imgui = require('imgui')
 local encoding = require 'encoding'
@@ -35,14 +35,14 @@ function update()
         local response = requests.get(raw)
         if response.status_code == 200 then
             downloadUrlToFile(decodeJson(response.text)['url'], thisScript().path, function (id, status, p1, p2)
-                print('Скачиваю '..decodeJson(response.text)['url']..' в '..thisScript().path)
+                print('Г‘ГЄГ Г·ГЁГўГ Гѕ '..decodeJson(response.text)['url']..' Гў '..thisScript().path)
                 if status == dlstatus.STATUSEX_ENDDOWNLOAD then
-                    sampAddChatMessage('Скрипт обновлен, перезагрузка...', -1)
+                    sampAddChatMessage('Г‘ГЄГ°ГЁГЇГІ Г®ГЎГ­Г®ГўГ«ГҐГ­, ГЇГҐГ°ГҐГ§Г ГЈГ°ГіГ§ГЄГ ...', -1)
                     thisScript():reload()
                 end
             end)
         else
-            sampAddChatMessage('Ошибка, невозможно установить обновление, код: '..response.status_code, -1)
+            sampAddChatMessage('ГЋГёГЁГЎГЄГ , Г­ГҐГўГ®Г§Г¬Г®Г¦Г­Г® ГіГ±ГІГ Г­Г®ГўГЁГІГј Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ, ГЄГ®Г¤: '..response.status_code, -1)
         end
     end
     return f
@@ -66,7 +66,7 @@ function imgui.BeforeDrawFrame()
     end
 end
 
---
+--ЛњЛњЛњЛњЛњ
 bike = {[481] = true, [509] = true, [510] = true}
 moto = {[448] = true, [461] = true, [462] = true, [463] = true, [468] = true, [471] = true, [521] = true, [522] = true, [523] = true, [581] = true, [586] = true}
 local directIni = 'gh_settings.ini'
@@ -105,7 +105,7 @@ local mainIni = inicfg.load({
         combo_eat = 0,
         eat_acctive = true,
         sbiv_eat = 1,
-        say_eat = 'нямка',
+        say_eat = 'Г­ГїГ¬ГЄГ ',
         acctive_eat = true,
         auto_c = true,
         noradio = true,
@@ -119,7 +119,7 @@ local mainIni = inicfg.load({
     },
 }, directIni)
 
-if not doesFileExist(getWorkingDirectory()..'/config/gh_settings.ini') then -- в ковычках название ини файлика или че там путь
+if not doesFileExist(getWorkingDirectory()..'/config/gh_settings.ini') then -- Гў ГЄГ®ГўГ»Г·ГЄГ Гµ Г­Г Г§ГўГ Г­ГЁГҐ ГЁГ­ГЁ ГґГ Г©Г«ГЁГЄГ  ГЁГ«ГЁ Г·ГҐ ГІГ Г¬ ГЇГіГІГј
     inicfg.save(mainIni, directIni)
 end
 
@@ -176,14 +176,14 @@ function main()
         sampRegisterChatCommand('scriptupd', function()
             update():download()
         end)
-        --notf.addNotification('Вышло обновление скрипта\n('..thisScript().version..' -> '..lastver..') \nВведите /scriptupd для обновления!', 5)
+        --notf.addNotification('Г‚Г»ГёГ«Г® Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ Г±ГЄГ°ГЁГЇГІГ \n('..thisScript().version..' -> '..lastver..') \nГ‚ГўГҐГ¤ГЁГІГҐ /scriptupd Г¤Г«Гї Г®ГЎГ­Г®ГўГ«ГҐГ­ГЁГї!', 5)
         update_window()
     end
     notf.addNotification('GettoHelper Loaded!\nVersion:'..thisScript().version..'. \nAuthor: Lill_Chich', 5)
     menu = 4
     sampRegisterChatCommand('usedrugs',use_drug)
     sampRegisterChatCommand('proverka', function()
-        sampAddChatMessage('олег харош', -1)
+        sampAddChatMessage('Г®Г«ГҐГЈ ГµГ Г°Г®Гё', -1)
     end)
     imgui.Process = false
     window.v = false
@@ -200,7 +200,7 @@ function main()
             if isKeyJustPressed(0x58) then
                 if many_drug.v == 1 then
                     if RP_drug.v then
-                            sampSendChat('/me съел конфету белого цвета')
+                            sampSendChat('/me Г±ГєГҐГ« ГЄГ®Г­ГґГҐГІГі ГЎГҐГ«Г®ГЈГ® Г¶ГўГҐГІГ ')
                         end
                         sampSendChat('/usedrugs 1')
                         if sbiv_drug.v == 1 then
@@ -209,7 +209,7 @@ function main()
                     end
                     if  many_drug.v == 2 then
                         if RP_drug.v then
-                            sampSendChat('/me съел конфету белого цвета')
+                            sampSendChat('/me Г±ГєГҐГ« ГЄГ®Г­ГґГҐГІГі ГЎГҐГ«Г®ГЈГ® Г¶ГўГҐГІГ ')
                             wait(500)
                         end
                         sampSendChat(u8:decode('/usedrugs 2'))
@@ -219,7 +219,7 @@ function main()
                     end
                     if many_drug.v == 3 then
                         if RP_drug.v then
-                            sampSendChat('/me съел конфету белого цвета')
+                            sampSendChat('/me Г±ГєГҐГ« ГЄГ®Г­ГґГҐГІГі ГЎГҐГ«Г®ГЈГ® Г¶ГўГҐГІГ ')
                             wait(500)
                         end
                         sampSendChat(u8:decode('/usedrugs 2'))
@@ -369,7 +369,7 @@ function main()
     end
 end
 local themes = {
-    colorThemes = {u8"Дефолтыч тема", u8"Тёмно-Оранжевая тема", u8"Фиолетовая тема", u8"Серая тема", u8"Розовая"},
+    colorThemes = {u8"Г„ГҐГґГ®Г«ГІГ»Г· ГІГҐГ¬Г ", u8"Г’ВёГ¬Г­Г®-ГЋГ°Г Г­Г¦ГҐГўГ Гї ГІГҐГ¬Г ", u8"Г”ГЁГ®Г«ГҐГІГ®ГўГ Гї ГІГҐГ¬Г ", u8"Г‘ГҐГ°Г Гї ГІГҐГ¬Г ", u8"ГђГ®Г§Г®ГўГ Гї"},
 
     SwitchColorTheme = function(theme)
         local style = imgui.GetStyle()
@@ -630,22 +630,22 @@ function imgui.OnDrawFrame()
                 imgui.Text(' ')
                 imgui.Text('    ')
                 imgui.SameLine()
-                if imgui.Button(fa.ICON_FA_CHILD..u8'  Главное Меню', imgui.ImVec2(230,130)) then
+                if imgui.Button(fa.ICON_FA_CHILD..u8'  ГѓГ«Г ГўГ­Г®ГҐ ГЊГҐГ­Гѕ', imgui.ImVec2(230,130)) then
                     menu = 4
                 end
                 imgui.Text('    ')
                 imgui.SameLine()
-                if imgui.Button(fa.ICON_FA_FILE_ALT..u8'  Основное', imgui.ImVec2(230,130)) then
+                if imgui.Button(fa.ICON_FA_FILE_ALT..u8'  ГЋГ±Г­Г®ГўГ­Г®ГҐ', imgui.ImVec2(230,130)) then
                     menu = 1
                 end
                 imgui.Text('    ')
                 imgui.SameLine()
-                if imgui.Button(fa.ICON_FA_EXCLAMATION_TRIANGLE..u8'  Читы    ', imgui.ImVec2(230,130)) then
+                if imgui.Button(fa.ICON_FA_EXCLAMATION_TRIANGLE..u8'  Г—ГЁГІГ»    ', imgui.ImVec2(230,130)) then
                     menu = 2
                 end
                 imgui.Text('    ')
                 imgui.SameLine()
-                if imgui.Button(fa.ICON_FA_COGS..u8'  Настройки', imgui.ImVec2(230,130)) then
+                if imgui.Button(fa.ICON_FA_COGS..u8'  ГЌГ Г±ГІГ°Г®Г©ГЄГЁ', imgui.ImVec2(230,130)) then
                     menu = 3
                 end
             imgui.EndChild()
@@ -656,12 +656,12 @@ function imgui.OnDrawFrame()
                     imgui.Text(' ')
                     imgui.SameLine()
                     imgui.PushItemWidth(100)
-                    imgui.Combo(u8'Сервера', combo_server, {'Phenix', 'Tucson', 'Scottdale', 'Chandler', 'Brainburg', 'Sait Rose', 'Mesa', 'Red Rock', 'Yuma', 'Surprise', 'Prescott', 'Glendale', 'Kingman', 'Winslow', 'Payson', 'Gilbert', 'Show-Low', 'Casa Grande'})
+                    imgui.Combo(u8'Г‘ГҐГ°ГўГҐГ°Г ', combo_server, {'Phenix', 'Tucson', 'Scottdale', 'Chandler', 'Brainburg', 'Sait Rose', 'Mesa', 'Red Rock', 'Yuma', 'Surprise', 'Prescott', 'Glendale', 'Kingman', 'Winslow', 'Payson', 'Gilbert', 'Show-Low', 'Casa Grande'})
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Text(u8'Чтобы узнать правила ГЕТТО вашего сервера нажмите на кнопку -->')
+                    imgui.Text(u8'Г—ГІГ®ГЎГ» ГіГ§Г­Г ГІГј ГЇГ°Г ГўГЁГ«Г  ГѓГ…Г’Г’ГЋ ГўГ ГёГҐГЈГ® Г±ГҐГ°ГўГҐГ°Г  Г­Г Г¦Г¬ГЁГІГҐ Г­Г  ГЄГ­Г®ГЇГЄГі -->')
                     imgui.SameLine()
-                    if imgui.Button(u8'Правила') then
+                    if imgui.Button(u8'ГЏГ°Г ГўГЁГ«Г ') then
                         if combo_server.v  == 0 then
                             os.execute(('explorer.exe "%s"'):format("https://forum.arizona-rp.com/threads/3624540/"))
                         end
@@ -717,18 +717,18 @@ function imgui.OnDrawFrame()
                             os.execute(('explorer.exe "%s"'):format("https://forum.arizona-rp.com/threads/3898282/"))
                         end
                     end
-                    --наркотики
+                    --Г­Г Г°ГЄГ®ГІГЁГЄГЁ
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Наркотики будут использоваться нажав на клавишу X')
+                    imgui.Ques('ГЌГ Г°ГЄГ®ГІГЁГЄГЁ ГЎГіГ¤ГіГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї Г­Г Г¦Г Гў Г­Г  ГЄГ«Г ГўГЁГёГі X')
                     imgui.SameLine()
-                    imgui.Text(u8'Наркотики')
+                    imgui.Text(u8'ГЌГ Г°ГЄГ®ГІГЁГЄГЁ')
                     imgui.SameLine()
                     imgui.ToggleButton('##1', acctive_drug)
                     if acctive_drug.v then
                         imgui.Text(' ')
                         imgui.SameLine()
-                        imgui.Text(u8'Сколько использовать:')
+                        imgui.Text(u8'Г‘ГЄГ®Г«ГјГЄГ® ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГј:')
                         imgui.SameLine()
                         imgui.RadioButton(u8'1', many_drug, 1)
                         imgui.SameLine()
@@ -737,48 +737,48 @@ function imgui.OnDrawFrame()
                         imgui.RadioButton(u8'3', many_drug, 3)
                         imgui.Text(' ')
                         imgui.SameLine()
-                        imgui.Text(u8'Сбивать:')
+                        imgui.Text(u8'Г‘ГЎГЁГўГ ГІГј:')
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Да', sbiv_drug, 1)
+                        imgui.RadioButton(u8'Г„Г ', sbiv_drug, 1)
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Нет', sbiv_drug, 2)
+                        imgui.RadioButton(u8'ГЌГҐГІ', sbiv_drug, 2)
                         imgui.Text(' ')
                         imgui.SameLine()
-                        imgui.Text(u8'RP отыгровка')
+                        imgui.Text(u8'RP Г®ГІГ»ГЈГ°Г®ГўГЄГ ')
                         imgui.SameLine()
                         imgui.ToggleButton('##2', RP_drug)
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет использоваться нажатием клавиш A + R + M')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї Г­Г Г¦Г ГІГЁГҐГ¬ ГЄГ«Г ГўГЁГё A + R + M')
                     imgui.SameLine()
-                    imgui.Text(u8'Армор')
+                    imgui.Text(u8'ГЂГ°Г¬Г®Г°')
                     imgui.SameLine()
                     imgui.ToggleButton('##3', acctive_armour)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет использоваться нажатием клавиш M + S + K')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї Г­Г Г¦Г ГІГЁГҐГ¬ ГЄГ«Г ГўГЁГё M + S + K')
                     imgui.SameLine()
-                    imgui.Text(u8'Маска')
+                    imgui.Text(u8'ГЊГ Г±ГЄГ ')
                     imgui.SameLine()
                     imgui.ToggleButton('##4', acctive_mask)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет использоваться нажатием клавиши P')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї Г­Г Г¦Г ГІГЁГҐГ¬ ГЄГ«Г ГўГЁГёГЁ P')
                     imgui.SameLine()
-                    imgui.Text(u8'Телефон')
+                    imgui.Text(u8'Г’ГҐГ«ГҐГґГ®Г­')
                     imgui.SameLine()
                     imgui.ToggleButton('##5', acctive_phone)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет использоваться нажатием клавиши L')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї Г­Г Г¦Г ГІГЁГҐГ¬ ГЄГ«Г ГўГЁГёГЁ L')
                     imgui.SameLine()
-                    imgui.Text(u8'Закрыть авто')
+                    imgui.Text(u8'Г‡Г ГЄГ°Г»ГІГј Г ГўГІГ®')
                     imgui.SameLine()
                     imgui.ToggleButton('##6', acctive_lock)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет писать в чат при убийстве')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЇГЁГ±Г ГІГј Гў Г·Г ГІ ГЇГ°ГЁ ГіГЎГЁГ©Г±ГІГўГҐ')
                     imgui.SameLine()
                     imgui.Text('KillSay')
                     imgui.SameLine()
@@ -791,36 +791,36 @@ function imgui.OnDrawFrame()
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Text(u8'Полный разгон на мото на ШИФТ')
+                    imgui.Text(u8'ГЏГ®Г«Г­Г»Г© Г°Г Г§ГЈГ®Г­ Г­Г  Г¬Г®ГІГ® Г­Г  ГГ€Г”Г’')
                     imgui.SameLine()
                     imgui.ToggleButton('##9', auto_bike)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет кушать если будете голодны')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ ГЄГіГёГ ГІГј ГҐГ±Г«ГЁ ГЎГіГ¤ГҐГІГҐ ГЈГ®Г«Г®Г¤Г­Г»')
                     imgui.SameLine()
-                    imgui.Text(u8'АвтоЕда')
+                    imgui.Text(u8'ГЂГўГІГ®Г…Г¤Г ')
                     imgui.SameLine()
                     imgui.ToggleButton('##10', acctive_eat)
                     if acctive_eat.v then
                         imgui.Text(' ')
                         imgui.SameLine()
                         imgui.PushItemWidth(150)
-                        imgui.Combo('##11', combo_eat, {u8'Жаренная рыба', u8'Жаренное мясо', u8'Чипсы'})
+                        imgui.Combo('##11', combo_eat, {u8'Г†Г Г°ГҐГ­Г­Г Гї Г°Г»ГЎГ ', u8'Г†Г Г°ГҐГ­Г­Г®ГҐ Г¬ГїГ±Г®', u8'Г—ГЁГЇГ±Г»'})
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Сбивать', sbiv_eat, 1)
+                        imgui.RadioButton(u8'Г‘ГЎГЁГўГ ГІГј', sbiv_eat, 1)
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Не сбивать', sbiv_eat, 2)
+                        imgui.RadioButton(u8'ГЌГҐ Г±ГЎГЁГўГ ГІГј', sbiv_eat, 2)
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Убирает радио')
+                    imgui.Ques('Г“ГЎГЁГ°Г ГҐГІ Г°Г Г¤ГЁГ®')
                     imgui.SameLine()
                     imgui.Text('NoRadio')
                     imgui.SameLine()
                     imgui.ToggleButton('##12', noradio)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Игра не будет сворачиваться при нажатие ALT + ENTER')
+                    imgui.Ques('Г€ГЈГ°Г  Г­ГҐ ГЎГіГ¤ГҐГІ Г±ГўГ®Г°Г Г·ГЁГўГ ГІГјГ±Гї ГЇГ°ГЁ Г­Г Г¦Г ГІГЁГҐ ALT + ENTER')
                     imgui.SameLine()
                     imgui.Text('FixAlt+Enter')
                     imgui.SameLine()
@@ -830,21 +830,21 @@ function imgui.OnDrawFrame()
                     imgui.Text(' ')
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Быстрый Бег/Плавание - w + 1')
+                    imgui.Ques('ГЃГ»Г±ГІГ°Г»Г© ГЃГҐГЈ/ГЏГ«Г ГўГ Г­ГЁГҐ - w + 1')
                     imgui.SameLine()
                     imgui.Text('Fast run/swim')
                     imgui.SameLine()
                     imgui.ToggleButton('##13', fast_run)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Не будет уставать')
+                    imgui.Ques('ГЌГҐ ГЎГіГ¤ГҐГІ ГіГ±ГІГ ГўГ ГІГј')
                     imgui.SameLine()
-                    imgui.Text(u8'Бесконечный бег')
+                    imgui.Text(u8'ГЃГҐГ±ГЄГ®Г­ГҐГ·Г­Г»Г© ГЎГҐГЈ')
                     imgui.SameLine()
                     imgui.ToggleButton('##14', beg)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Хил будет использоваться, если хп будет <= 40')
+                    imgui.Ques('Г•ГЁГ« ГЎГіГ¤ГҐГІ ГЁГ±ГЇГ®Г«ГјГ§Г®ГўГ ГІГјГ±Гї, ГҐГ±Г«ГЁ ГµГЇ ГЎГіГ¤ГҐГІ <= 40')
                     imgui.SameLine()
                     imgui.Text('AutoHeal')
                     imgui.SameLine()
@@ -852,14 +852,14 @@ function imgui.OnDrawFrame()
                     if acctive_heal.v then
                         imgui.SameLine()
                         imgui.PushItemWidth(100)
-                        imgui.InputText(u8'Команда при хиле', command_heal)
+                        imgui.InputText(u8'ГЉГ®Г¬Г Г­Г¤Г  ГЇГ°ГЁ ГµГЁГ«ГҐ', command_heal)
                         imgui.SameLine()
                         imgui.PushItemWidth(50)
-                        imgui.InputText(u8'При ХП', hp_heal)
+                        imgui.InputText(u8'ГЏГ°ГЁ Г•ГЏ', hp_heal)
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Будет автоматически перезаряжать оружее')
+                    imgui.Ques('ГЃГіГ¤ГҐГІ Г ГўГІГ®Г¬Г ГІГЁГ·ГҐГ±ГЄГЁ ГЇГҐГ°ГҐГ§Г Г°ГїГ¦Г ГІГј Г®Г°ГіГ¦ГҐГҐ')
                     imgui.SameLine()
                     imgui.Text('AutoScroll')
                     imgui.SameLine()
@@ -868,39 +868,39 @@ function imgui.OnDrawFrame()
                         imgui.Text(' ')
                         imgui.SameLine()
                         imgui.PushItemWidth(50)
-                        imgui.InputText(u8'После скольки скроллить', number_scroll)
+                        imgui.InputText(u8'ГЏГ®Г±Г«ГҐ Г±ГЄГ®Г«ГјГЄГЁ Г±ГЄГ°Г®Г«Г«ГЁГІГј', number_scroll)
                         imgui.Text(' ')
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Скролить', scroll, 1)
+                        imgui.RadioButton(u8'Г‘ГЄГ°Г®Г«ГЁГІГј', scroll, 1)
                         imgui.SameLine()
-                        imgui.Ques('Предупредить - выведится на экран и звук что надо скроллить')
+                        imgui.Ques('ГЏГ°ГҐГ¤ГіГЇГ°ГҐГ¤ГЁГІГј - ГўГ»ГўГҐГ¤ГЁГІГ±Гї Г­Г  ГЅГЄГ°Г Г­ ГЁ Г§ГўГіГЄ Г·ГІГ® Г­Г Г¤Г® Г±ГЄГ°Г®Г«Г«ГЁГІГј')
                         imgui.SameLine()
-                        imgui.RadioButton(u8'Предупредить', scroll, 2)
+                        imgui.RadioButton(u8'ГЏГ°ГҐГ¤ГіГЇГ°ГҐГ¤ГЁГІГј', scroll, 2)
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Бесконечное здоровье машины')
+                    imgui.Ques('ГЃГҐГ±ГЄГ®Г­ГҐГ·Г­Г®ГҐ Г§Г¤Г®Г°Г®ГўГјГҐ Г¬Г ГёГЁГ­Г»')
                     imgui.SameLine()
                     imgui.Text(u8'GMCar')
                     imgui.SameLine()
                     imgui.ToggleButton('##17', gm_car)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Персонаж не будет падать с велика/мотика')
+                    imgui.Ques('ГЏГҐГ°Г±Г®Г­Г Г¦ Г­ГҐ ГЎГіГ¤ГҐГІ ГЇГ Г¤Г ГІГј Г± ГўГҐГ«ГЁГЄГ /Г¬Г®ГІГЁГЄГ ')
                     imgui.SameLine()
                     imgui.Text('NoBike')
                     imgui.SameLine()
                     imgui.ToggleButton('##18', nobike)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Не будет вас стопить при попадении из оружия')
+                    imgui.Ques('ГЌГҐ ГЎГіГ¤ГҐГІ ГўГ Г± Г±ГІГ®ГЇГЁГІГј ГЇГ°ГЁ ГЇГ®ГЇГ Г¤ГҐГ­ГЁГЁ ГЁГ§ Г®Г°ГіГ¦ГЁГї')
                     imgui.SameLine()
                     imgui.Text('AntiStan')
                     imgui.SameLine()
                     imgui.ToggleButton('##19', anti_stan)
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Ques('Камера не будет взовращаться на дефолтное место')
+                    imgui.Ques('ГЉГ Г¬ГҐГ°Г  Г­ГҐ ГЎГіГ¤ГҐГІ ГўГ§Г®ГўГ°Г Г№Г ГІГјГ±Гї Г­Г  Г¤ГҐГґГ®Г«ГІГ­Г®ГҐ Г¬ГҐГ±ГІГ®')
                     imgui.SameLine()
                     imgui.Text('ExtraWS')
                     imgui.SameLine()
@@ -911,7 +911,7 @@ function imgui.OnDrawFrame()
                     imgui.Text(' ')
                     imgui.SameLine()
                     imgui.PushItemWidth(200)
-                    imgui.InputText(u8'Активация скрипта(команда)', command)
+                    imgui.InputText(u8'ГЂГЄГІГЁГўГ Г¶ГЁГї Г±ГЄГ°ГЁГЇГІГ (ГЄГ®Г¬Г Г­Г¤Г )', command)
                     imgui.Text(' ')
                     imgui.Text(' ')
                     imgui.Text(' ')
@@ -929,7 +929,7 @@ function imgui.OnDrawFrame()
                     end
                     imgui.Text(' ')
                     imgui.SameLine()
-                    imgui.Text(u8'Сменить тему')
+                    imgui.Text(u8'Г‘Г¬ГҐГ­ГЁГІГј ГІГҐГ¬Гі')
                     for i, value in ipairs(themes.colorThemes) do
                         imgui.Text(' ')
                         imgui.SameLine()
@@ -944,17 +944,17 @@ function imgui.OnDrawFrame()
                     imgui.Image(img, imgui.ImVec2(500, 380))
                     imgui.Text(' ')
                     imgui.SameLine()
-                    if imgui.Button(u8'Выгрузить', imgui.ImVec2(183, 150)) then
+                    if imgui.Button(u8'Г‚Г»ГЈГ°ГіГ§ГЁГІГј', imgui.ImVec2(183, 150)) then
                         showCursor(false)
                         thisScript():unload()
                     end
                     imgui.SameLine()
-                    if imgui.Button(u8'Перезагрузить', imgui.ImVec2(183, 150)) then
+                    if imgui.Button(u8'ГЏГҐГ°ГҐГ§Г ГЈГ°ГіГ§ГЁГІГј', imgui.ImVec2(183, 150)) then
                         showCursor(false)
                         thisScript():reload()
                     end
                     imgui.SameLine()
-                    if imgui.Button(u8'Удалить', imgui.ImVec2(183,150)) then
+                    if imgui.Button(u8'Г“Г¤Г Г«ГЁГІГј', imgui.ImVec2(183,150)) then
                         onewindow.v = true
                     end
                 end
@@ -965,13 +965,13 @@ function imgui.OnDrawFrame()
         imgui.SetNextWindowPos(imgui.ImVec2(mx/2, my/2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(340, 140), imgui.Cond.FirstUseEver)
         imgui.Begin('Delete', onewindow, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove + imgui.WindowFlags.NoTitleBar)
-            imgui.CenterText(u8'Вы точно хотите удалить скрипт?')
-            if imgui.Button(u8'Да', imgui.ImVec2(150,50)) then
+            imgui.CenterText(u8'Г‚Г» ГІГ®Г·Г­Г® ГµГ®ГІГЁГІГҐ ГіГ¤Г Г«ГЁГІГј Г±ГЄГ°ГЁГЇГІ?')
+            if imgui.Button(u8'Г„Г ', imgui.ImVec2(150,50)) then
                 os.remove(thisScript().path)
                 thisScript():unload()
             end
             imgui.SameLine()
-            if imgui.Button(u8'Нет', imgui.ImVec2(150,50)) then
+            if imgui.Button(u8'ГЌГҐГІ', imgui.ImVec2(150,50)) then
                 onewindow.v = false
             end
         imgui.End()
@@ -980,17 +980,17 @@ function imgui.OnDrawFrame()
         imgui.SetNextWindowPos(imgui.ImVec2(mx/2, my/2), imgui.Cond.FirstUseEver, imgui.ImVec2(0.5, 0.5))
         imgui.SetNextWindowSize(imgui.ImVec2(340, 140), imgui.Cond.FirstUseEver)
         imgui.Begin('Update', onewindow, imgui.WindowFlags.NoResize + imgui.WindowFlags.NoMove)
-            imgui.CenterText(u8'Вышла новая версия скрипта.')
-            imgui.CenterText(u8'Вы хотите обновить скрипт?')
-            if imgui.Button(u8'Да', imgui.ImVec2(150,50)) then
-                sampAddChatMessage('Обнавление началось',-1)
+            imgui.CenterText(u8'Г‚Г»ГёГ«Г  Г­Г®ГўГ Гї ГўГҐГ°Г±ГЁГї Г±ГЄГ°ГЁГЇГІГ .')
+            imgui.CenterText(u8'Г‚Г» ГµГ®ГІГЁГІГҐ Г®ГЎГ­Г®ГўГЁГІГј Г±ГЄГ°ГЁГЇГІ?')
+            if imgui.Button(u8'Г„Г ', imgui.ImVec2(150,50)) then
+                sampAddChatMessage('ГЋГЎГ­Г ГўГ«ГҐГ­ГЁГҐ Г­Г Г·Г Г«Г®Г±Гј',-1)
                 update():download()
                 twowindow.v = false
                 window.v = false
                 imgui.Process = false
             end
             imgui.SameLine()
-            if imgui.Button(u8'Нет', imgui.ImVec2(150,50)) then
+            if imgui.Button(u8'ГЌГҐГІ', imgui.ImVec2(150,50)) then
                 twowindow.v = false
             end
         imgui.End()
@@ -1072,7 +1072,7 @@ function noradio_func()
 end
 
 function event.onShowDialog(dialogId, style, title, button1, button2, text)
-	if dialogId == 2 and text:find('Введите свой пароль') and password ~= '' and not text:find('Неверный пароль') and auto_login then
+	if dialogId == 2 and text:find('Г‚ГўГҐГ¤ГЁГІГҐ Г±ГўГ®Г© ГЇГ Г°Г®Г«Гј') and password ~= '' and not text:find('ГЌГҐГўГҐГ°Г­Г»Г© ГЇГ Г°Г®Г«Гј') and auto_login then
 		sampSendDialogResponse(dialogId, 1, nil, mainIni.settings.password)
 		return false
 	end
@@ -1092,7 +1092,7 @@ function imgui.CenterText(text)
 end
 
 function event.onServerMessage(text)
-    if hp_state and text:find('У вас нету аптечки') then
+    if hp_state and text:find('Г“ ГўГ Г± Г­ГҐГІГі Г ГЇГІГҐГ·ГЄГЁ') then
         return false
     end
     hp_state = false
